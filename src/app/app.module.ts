@@ -15,8 +15,8 @@ import { PhoneDetailComponent } from './phone-detail/phone-detail.component';
   ],
   imports: [
     BrowserModule,
-    NgReduxModule
-
+    NgReduxModule,
+    routing,
   ],
   providers: [],
   bootstrap: [AppComponent]
