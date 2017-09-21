@@ -1,3 +1,35 @@
-<p>
-  phone-list works!
-</p>
+<div class="container-fluid">
+  <div class="col-xs-5">
+  </div>
+    <div class="col-xs-4">
+    <h3>Phones</h3>
+    <table class="table table-inverse">    
+      <tr>
+        <th class="col-xs-10">Number</th>
+        <th class="col-xs-2">Actions</th>
+      </tr>
+      <tr *ngFor="let phoneNumber of phoneNumbers">
+        <td class="col-xs-10">
+          <div *ngIf="!phoneNumber.edit" >
+            {{phoneNumber.number}}
+          </div>
+          <input [value]="phoneNumber.number" (input)="updatedNumber=$event.target.value" (keyup.enter)="updatePhoneNumber(phoneNumber.number, updatedNumber)" *ngIf="phoneNumber.edit"/>
+        </td>
+        <td class="col-xs-2">
+          <i class="fa fa-trash-o fa-lg clickable" (click)="delete(phoneNumber.number)"></i>
+          <i *ngIf="!phoneNumber.edit" class="fa fa-pencil fa-lg clickable" 
+              (click)="toggleEdit(phoneNumber)">
+          </i>        
+          <i *ngIf="phoneNumber.edit" class="fa fa-check-square fa-lg" 
+              (click)="updatePhoneNumber(phoneNumber.number, updatedNumber)" 
+              aria-hidden="true">
+          </i>
+        </td>
+      </tr>
+      
+    </table>
+    Add a number: <input  (keyup.enter)="createPhoneNumber(newNumber)" 
+                          (input)="newNumber=$event.target.value" /> 
+                  <button (click)="createPhoneNumber(newNumber)" class="btn btn-inverted">Add</button>
+  </div>
+</div>
