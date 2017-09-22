@@ -12,11 +12,11 @@ export const INITIAL_STATE: IAppState = {
   err: ''
 };
 
-export function rootReducer(lastState: IAppState, action: PhoneAction): IAppState {
+export function rootReducer(lastState: IAppState = INITIAL_STATE, action: PhoneAction): IAppState {
   switch (action.type) {
     case PhoneActions.CREATE: return maybeAddElement(lastState, action.payload);
     case PhoneActions.DELETE: return { phoneNumbers: lastState.phoneNumbers.filter(phoneNumber => phoneNumber != action.payload), err: '' };
-    case PhoneActions.UPDATE: return { phoneNumbers: replaceElement(lastState.phoneNumbers, action.payload.oldNumber, action.payload.newNumber), err: '' };
+    case PhoneActions.UPDATE: return maybeUpdateElement(lastState, action.payload.oldNumber, action.payload.newNumber);
     case PhoneActions.CREATE: return { phoneNumbers: [...lastState.phoneNumbers, action.payload], err: ''};
     case PhoneActions.CLEAR_ERROR: return {phoneNumbers: lastState.phoneNumbers, err: ''};
   }
@@ -31,6 +31,14 @@ function maybeAddElement(state: IAppState, el: string): IAppState  {
   } else {
     state.phoneNumbers = [...state.phoneNumbers, el];
     return {phoneNumbers: state.phoneNumbers, err: ''};
+  }
+}
+
+function maybeUpdateElement(state: IAppState, oldNumber: string, newNumber: string): IAppState {
+  if (state.phoneNumbers.some(number => number == newNumber)) {
+    return {phoneNumbers: state.phoneNumbers, err: 'The supplied number already exists.'};
+  } else {
+    return {phoneNumbers: replaceElement(state.phoneNumbers, oldNumber, newNumber), err: ''};
   }
 }
 
