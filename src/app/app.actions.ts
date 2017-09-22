@@ -13,16 +13,22 @@ export class PhoneActions {
   static CREATE = 'CREATE';
   static DELETE = 'DELETE';
   static UPDATE = 'UPDATE';
+  static CLEAR_ERROR = 'CLEAR_ERROR';
+
+  clearError(): PhoneAction {
+    return {type: PhoneActions.CLEAR_ERROR,
+            payload: null};
+  }
 
   delete(phoneNumber: string): PhoneAction {
-      return {type: PhoneActions.DELETE,
-              payload: phoneNumber };
+    return {type: PhoneActions.DELETE,
+            payload: phoneNumber };
   }
 
   update(oldNumber: string, newNumber: string): PhoneAction {
-      return {type: PhoneActions.UPDATE,
-              payload: {oldNumber: oldNumber, newNumber: newNumber}  
-            };
+    return {type: PhoneActions.UPDATE,
+            payload: {oldNumber: oldNumber, newNumber: newNumber}
+          };
   }
 
   create(phoneNumber: string): PhoneAction {
@@ -35,10 +41,5 @@ export class PhoneActions {
     return { type: PhoneActions.LIST,
              payload: null
      };
-  }
-
-  find(phone_id: string): PhoneAction {
-    return { type: PhoneActions.FIND,
-             payload: phone_id };
   }
 }

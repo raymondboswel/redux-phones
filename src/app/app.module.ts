@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgReduxModule, NgRedux } from '@angular-redux/store';
 
+import { FormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ng2-validation';
+
 import { rootReducer, IAppState, INITIAL_STATE } from '../store';
 import { PhoneActions } from './app.actions';
 
@@ -23,6 +26,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     NgReduxModule,
     routing,
+    FormsModule,
+    CustomFormsModule
   ],
   providers: [PhoneActions],
   bootstrap: [AppComponent]

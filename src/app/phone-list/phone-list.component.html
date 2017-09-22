@@ -3,7 +3,7 @@
   </div>
     <div class="col-xs-4">
     <h3>Phones</h3>
-    <table class="table table-inverse">    
+    <table class="table table-inverse">
       <tr>
         <th class="col-xs-10">Number</th>
         <th class="col-xs-2">Actions</th>
@@ -17,19 +17,21 @@
         </td>
         <td class="col-xs-2">
           <i class="fa fa-trash-o fa-lg clickable" (click)="delete(phoneNumber.number)"></i>
-          <i *ngIf="!phoneNumber.edit" class="fa fa-pencil fa-lg clickable" 
+          <i *ngIf="!phoneNumber.edit" class="fa fa-pencil fa-lg clickable"
               (click)="toggleEdit(phoneNumber)">
-          </i>        
-          <i *ngIf="phoneNumber.edit" class="fa fa-check-square fa-lg" 
-              (click)="updatePhoneNumber(phoneNumber.number, updatedNumber)" 
+          </i>
+          <i *ngIf="phoneNumber.edit" class="fa fa-check-square fa-lg"
+              (click)="updatePhoneNumber(phoneNumber.number, updatedNumber)"
               aria-hidden="true">
           </i>
         </td>
       </tr>
-      
+
     </table>
-    Add a number: <input  (keyup.enter)="createPhoneNumber(newNumber)" 
-                          (input)="newNumber=$event.target.value" /> 
-                  <button (click)="createPhoneNumber(newNumber)" class="btn btn-inverted">Add</button>
+    Add a number: <input  (keyup.enter)="createPhoneNumber(newNumber)"
+                          [(ngModel)]="newNumber"
+                          name="field" #field="ngModel" phone="ZA" />
+                  <button (click)="createPhoneNumber(newNumber)" [disabled]="field.errors?.phone || newNumber.length == 0" class="btn btn-inverted">Add</button>
+                  <p *ngIf="field.errors?.phone">Please enter a valid phone number!</p>
   </div>
 </div>
