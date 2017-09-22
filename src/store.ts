@@ -27,11 +27,10 @@ export function rootReducer(lastState: IAppState, action: PhoneAction): IAppStat
 
 function maybeAddElement(state: IAppState, el: string): IAppState  {
   if (state.phoneNumbers.some(e => e == el)) {
-    state.err = 'duplicate_phone_number';
-    return state;
+    return {phoneNumbers: state.phoneNumbers, err: 'The supplied number already exists.'};
   } else {
     state.phoneNumbers = [...state.phoneNumbers, el];
-    return state;
+    return {phoneNumbers: state.phoneNumbers, err: ''};
   }
 }
 
