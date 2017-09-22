@@ -56,7 +56,11 @@ export class PhoneListComponent implements OnInit, OnDestroy {
   }
 
   updatePhoneNumber(phoneNumber: string, newPhoneNumber: string) {
-    this.ngRedux.dispatch(this.actions.update(phoneNumber, newPhoneNumber));
+    if (phoneNumber != newPhoneNumber) {
+      this.ngRedux.dispatch(this.actions.update(phoneNumber, newPhoneNumber));
+    } else {
+      this.toggleEdit(new PhoneNumberVM(phoneNumber));
+    }
   }
 
   createPhoneNumber(phoneNumber: string) {
@@ -64,7 +68,7 @@ export class PhoneListComponent implements OnInit, OnDestroy {
   }
 
   toggleEdit(phoneNumber: PhoneNumberVM) {
-    this.newNumber = phoneNumber.number;
+    this.updatedNumber = phoneNumber.number;
     this.phoneNumbers.map(p => {
       p.edit = false;
     });

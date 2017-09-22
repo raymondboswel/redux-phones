@@ -11,15 +11,13 @@ import { PhoneActions } from './app.actions';
 import { routing, appRoutingProviders } from './app.routing';
 import { AppComponent } from './app.component';
 import { PhoneListComponent } from './phone-list/phone-list.component';
-import { PhoneDetailComponent } from './phone-detail/phone-detail.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PhoneListComponent,
-    PhoneDetailComponent
+    PhoneListComponent
   ],
   imports: [
     NgbModule.forRoot(),
