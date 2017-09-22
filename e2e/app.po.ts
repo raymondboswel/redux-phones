@@ -6,6 +6,20 @@ export class ReduxPhonesPage {
   }
 
   getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+    return element(by.css('.phones-header')).getText();
+  }
+
+  setInputText(text) {
+    const el = element(by.css('.phone-input'));
+    el.sendKeys(text);
+  }
+
+  pressAddButton() {
+    const el = element(by.className('btn'));
+    el.click();
+  }
+
+  getTableRows() {
+    return element.all(by.css('.phone-row'));
   }
 }

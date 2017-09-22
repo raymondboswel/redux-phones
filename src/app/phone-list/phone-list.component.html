@@ -2,13 +2,13 @@
   <div class="col-xs-5">
   </div>
     <div class="col-xs-4">
-    <h3>Phones</h3>
+    <h3 class="phones-header">Phones</h3>
     <table class="table table-inverse">
       <tr>
         <th class="col-xs-10">Number</th>
         <th class="col-xs-2" style="width:400px" >Actions</th>
       </tr>
-      <tr *ngFor="let phoneNumber of phoneNumbers">
+      <tr class="phone-row" *ngFor="let phoneNumber of phoneNumbers">
         <td class="col-xs-10">
           <div *ngIf="!phoneNumber.edit" >
             {{phoneNumber.number}}
@@ -28,7 +28,7 @@
       </tr>
 
     </table>
-    Add a number: <input  (keyup.enter)="createPhoneNumber(newNumber)"
+    Add a number: <input class="phone-input" (keyup.enter)="createPhoneNumber(newNumber)"
                           [(ngModel)]="newNumber"
                           name="field" #field="ngModel" phone="ZA" />
                   <button (click)="createPhoneNumber(newNumber)" [disabled]="field.errors?.phone || newNumber.length == 0" class="btn btn-inverted">Add</button>

@@ -8,7 +8,7 @@ export interface IAppState {
 }
 
 export const INITIAL_STATE: IAppState = {
-  phoneNumbers: ['1234567890'],
+  phoneNumbers: [],
   err: ''
 };
 

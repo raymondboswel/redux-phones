@@ -6,7 +6,7 @@ describe('phoneNumber reducer', () => {
     expect(
       rootReducer(undefined, { type: PhoneActions.LIST, payload: null})
     )
-    .toEqual({phoneNumbers: ['1234567890'], err: ''});
+    .toEqual({phoneNumbers: [], err: ''});
   });
 
   it('should handle CREATE', () => {
